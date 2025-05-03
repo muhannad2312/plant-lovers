@@ -1,0 +1,159 @@
+
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Plant Lovers</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f5f0e6;
+      color: #5a3e1b;
+      text-align: center;
+      direction: rtl;
+      border: 10px solid #5a3e1b;
+      box-sizing: border-box;
+    }
+
+    .overlay {
+      padding: 30px 10px;
+      margin-top: 10px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: start;
+    }
+
+    .clock {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      background-color: #5a3e1b;
+      color: #b1d8b7;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-family: 'Courier New', monospace;
+    }
+
+    h1 {
+      font-size: 48px;
+      margin: 0;
+    }
+
+    .plant {
+      font-size: 60px;
+      font-weight: bold;
+    }
+
+    .lovers {
+      font-size: 28px;
+      font-weight: bold;
+      transition: font-size 0.3s ease;
+      text-shadow: 0 0 10px #a2d39c, 0 0 20px #a2d39c;
+    }
+
+    nav {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 30px;
+      width: 90%;
+      max-width: 360px;
+    }
+
+    a {
+      color: #5a3e1b;
+      text-decoration: none;
+      font-size: 18px;
+      border: 2px solid #b1d8b7;
+      padding: 10px;
+      border-radius: 8px;
+      transition: background-color 0.3s, transform 0.2s;
+      background-color: #e8f5ea;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    a:hover {
+      background-color: #d4eddc;
+      transform: scale(1.03);
+    }
+
+    .store-info, .shine-info {
+      margin-top: 20px;
+      font-size: 16px;
+      color: #5a3e1b;
+      font-weight: bold;
+    }
+
+    .shine-info {
+      transition: font-size 0.3s ease;
+      font-style: italic;
+      color: #4CAF50;
+    }
+
+    @media (max-width: 600px) {
+      .plant { font-size: 50px; }
+      .lovers { font-size: 24px; }
+      .clock { font-size: 22px; }
+      a { font-size: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <div class="clock" id="clock">الساعة: --:--:--</div>
+    <div class="plant">Plant</div>
+    <div class="lovers" id="lovers">Lovers</div>
+
+    <nav>
+      <a href="#">خانة المنتجات</a>
+      <a href="#">نبات داخلي</a>
+      <a href="#">أحواض سمك</a>
+      <a href="https://maps.app.goo.gl/TrVP2c2GB36pC8Tx7?g_st=com.google.maps.preview.copy" target="_blank">
+        <i class="fas fa-map-marker-alt"></i> موقعنا
+      </a>
+      <a href="https://wa.me/966539294009" target="_blank">
+        <i class="fab fa-whatsapp" style="color: #25D366;"></i> للتواصل: 0539294009
+      </a>
+      <a href="https://www.instagram.com/lovers.sa1?igsh=MWw1NGh6czd1bGd6Zw==" target="_blank">
+        <i class="fab fa-instagram" style="color: #E4405F;"></i> Instagram
+      </a>
+      <a href="https://www.tiktok.com/@lovers.sa1?_t=ZS-8w2ZOW5cQ8Q&_r=1" target="_blank">
+        <i class="fab fa-tiktok"></i> TikTok
+      </a>
+    </nav>
+
+    <div class="store-info">متجر لبيع النبات 🪴</div>
+    <div class="shine-info" id="shine-text">The best plant for your place</div>
+  </div>
+
+  <script>
+    function updateClock() {
+      const now = new Date();
+      const hours = now.getHours().toString().padStart(2, '0');
+      const minutes = now.getMinutes().toString().padStart(2, '0');
+      const seconds = now.getSeconds().toString().padStart(2, '0');
+      document.getElementById('clock').textContent = `الساعة: ${hours}:${minutes}:${seconds}`;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      const lovers = document.getElementById('lovers');
+      const shine = document.getElementById('shine-text');
+      const newSize = 28 + Math.min(scrollY / 5, 36);
+      lovers.style.fontSize = `${newSize}px`;
+      shine.style.fontSize = `${16 + Math.min(scrollY / 8, 16)}px`;
+    });
+  </script>
+</body>
+</html>
