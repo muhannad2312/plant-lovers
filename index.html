@@ -121,7 +121,7 @@
         <i class="fas fa-map-marker-alt"></i> موقعنا
       </a>
       <a href="https://wa.me/966539294009" target="_blank">
-        <i class="fab fa-whatsapp" style="color: #25D366;"></i> للتواصل: 0539294009
+        <i class="fab fa-whatsapp" style="color: #25D366;"></i> للتواصل: 
       </a>
       <a href="https://www.instagram.com/lovers.sa1?igsh=MWw1NGh6czd1bGd6Zw==" target="_blank">
         <i class="fab fa-instagram" style="color: #E4405F;"></i> Instagram
@@ -135,25 +135,33 @@
     <div class="shine-info" id="shine-text">The best plant for your place</div>
   </div>
 
-  <script>
-    function updateClock() {
-      const now = new Date();
-      const hours = now.getHours().toString().padStart(2, '0');
-      const minutes = now.getMinutes().toString().padStart(2, '0');
-      const seconds = now.getSeconds().toString().padStart(2, '0');
-      document.getElementById('clock').textContent = `الساعة: ${hours}:${minutes}:${seconds}`;
-    }
-    setInterval(updateClock, 1000);
-    updateClock();
+ <script>
+  function updateClock() {
+    const now = new Date();
+    let hours = now.getHours();
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    const seconds = now.getSeconds().toString().padStart(2, '0');
+    const ampm = hours >= 12 ? 'PM' : 'AM';
 
-    window.addEventListener('scroll', () => {
-      const scrollY = window.scrollY;
-      const lovers = document.getElementById('lovers');
-      const shine = document.getElementById('shine-text');
-      const newSize = 28 + Math.min(scrollY / 5, 36);
-      lovers.style.fontSize = `${newSize}px`;
-      shine.style.fontSize = `${16 + Math.min(scrollY / 8, 16)}px`;
-    });
-  </script>
+    hours = hours % 12;
+    hours = hours ? hours : 12; // الساعة 0 تصير 12
+
+    document.getElementById('clock').textContent =
+      `الساعة: ${hours}:${minutes}:${seconds} ${ampm}`;
+  }
+
+  setInterval(updateClock, 1000);
+  updateClock();
+
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    const lovers = document.getElementById('lovers');
+    const shine = document.getElementById('shine-text');
+    const newSize = 28 + Math.min(scrollY / 5, 36);
+    lovers.style.fontSize = `${newSize}px`;
+    shine.style.fontSize = `${16 + Math.min(scrollY / 8, 16)}px`;
+  });
+</script>
+  
 </body>
 </html>
